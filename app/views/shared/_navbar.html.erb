@@ -28,25 +28,27 @@
         <div class="navbar-end">
           <a href="/" class="navbar-item">Post gig</a>
           <a href="/" class="navbar-item">Browse gig</a>
+
+          <% if(!user_signed_in?) %>
           <div class="navbar-item">
             <div class="buttons">
               <a class="button is-primary"><strong>Sign up</strong></a>
               <a class="button is-light">Log in</a>
             </div>
           </div>
-
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a href="/" class="navbar-item">Umair Qaisar</a>
-          <div class="navbar-dropdown">
-            <a href="/" class="navbar-item">Profile</a>
-            <a href="/" class="navbar-item">Dashboard</a>
-            <hr class="navbar-divider">
-            <a href="/" class="navbar-item">Log out</a>
+          <% else %>
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a href="/" class="navbar-item"><%= current_user.email %></a>
+            <div class="navbar-dropdown">
+              <a href="/" class="navbar-item">Profile</a>
+              <a href="/" class="navbar-item">Dashboard</a>
+              <hr class="navbar-divider">
+              <a href="/" class="navbar-item">Log out</a>
+            </div>
           </div>
+          <% end %>
         </div>
-        
 
-        </div>
       </div>
     </nav>
 
