@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = current.user
+    @user = current_user
     if @user.update_attribute(current_user_params)
         flash[:notice] = "Saved..."
     else
@@ -20,3 +20,5 @@ class UsersController < ApplicationController
     params.require(:user).permit(:from, :about, :status, :language)
   end
 end
+
+
