@@ -1,0 +1,41 @@
+class GigsController < ApplicationController
+  before_action :authenticate_user!, except: [:show]
+  before_action :set_gig, except: [:new, :create]
+  before_action :is_authorised, only: [:edit, :update]
+
+  def new
+    @gig = current_user.gigs.build(
+      @categories = Category.all  
+    )
+  end
+
+  def create
+    @gig = current_user.gigs.build(gig_params)
+
+    if @gig.save
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def show
+  end
+
+  private
+
+  def set_gig 
+    @gig = Gig.find(params[:id])
+  end
+
+  def is_authorised 
+    redirect_to root_path, alert: "You do not have permission" unless current_user.id == @gig.user_id
+  end
+
+  def gig_params
+    params.require(:gig).permit(:title, :video, :active, :category_id, :has_single_pricing,
+                                pricings_attributes: [:id, :title, :description, :delivery_time, :price, :pricing_type])
+  end
+end
