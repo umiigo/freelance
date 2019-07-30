@@ -4,15 +4,19 @@ class GigsController < ApplicationController
   before_action :is_authorised, only: [:edit, :update]
 
   def new
-    @gig = current_user.gigs.build(
-      @categories = Category.all  
-    )
+    @gig = current_user.gigs.build
+    @categories = Category.all  
   end
 
   def create
     @gig = current_user.gigs.build(gig_params)
 
     if @gig.save
+      @gig.pricings.create(Pricing.pricing_types.values.map{|x| {pricing_type: x}})
+      redirect_to edit_gig_path(@gig), notice: "Save..."
+    else
+      redirect_to request.referrer, flash: {error: @gig.errors.full_messages}
+    end
   end
 
   def edit
