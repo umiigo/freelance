@@ -26,7 +26,7 @@
         </div>
 
         <div class="navbar-end">
-          <a href="/" class="navbar-item">Post gig</a>
+          <%= link_to ' Add New Gig', new_gig_path, class: 'navbar-item' %>
           <a href="/" class="navbar-item">Browse gig</a>
 
           <% if(!user_signed_in?) %>
@@ -67,7 +67,7 @@
           <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">Selling</a>
             <div class="navbar-dropdown">
-              <a class="navbar-item">Create a new gig</a>
+              <%= link_to 'Add New Gig', new_gig_path, class: 'navbar-item' %>
             </div>
           </div>
 
