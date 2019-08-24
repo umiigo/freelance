@@ -59,7 +59,8 @@
       </div>
     </nav>
 
-    <nav class='navbar has-shadow' style="z-index: 5">
+  <% if (user_signed_in?) %>
+     <nav class='navbar has-shadow' style="z-index: 5">
       <div class="container">
         <div class="navbar">
           <%= link_to 'Dashboard', dashboard_path, class:'navbar-item' %>
@@ -107,6 +108,9 @@
         </div>
       </div>
     </nav>
+  <% end %>
+
+   
 
 
 <script>
