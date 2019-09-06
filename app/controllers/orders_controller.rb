@@ -14,6 +14,14 @@ class OrdersController < ApplicationController
 
     end
 
+    def buying_orders
+        @orders = current_user.buying_orders
+    end
+
+    def selling_orders
+        @orders = current_user.selling_orders
+    end
+
     private
 
     def charge(gig, pricing)
