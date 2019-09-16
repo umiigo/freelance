@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
+
   root 'pages#home'
 
   get '/dashboard', to: 'users#dashboard'
   get '/users/:id', to: 'users#show'
   get '/selling_orders', to: 'orders#selling_orders'
   get '/buying_orders', to: 'orders#buying_orders'
+  
   post '/users/edit', to: 'users#update'
 
   put '/orders/:id/complete', to: 'orders#complete', as: 'complete_order'
