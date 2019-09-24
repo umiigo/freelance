@@ -8,11 +8,11 @@ class RequestsController < ApplicationController
   end
 
   def new
-    @request = current_user.request.build
+    @request = current_user.requests.build
   end
 
   def create
-    @request = current_user.request.build(request_params)
+    @request = current_user.requests.build(request_params)
     if @request.save 
       redirect_to requests_path, notice: "Saved..."
     else
