@@ -98,12 +98,13 @@ ActiveRecord::Schema.define(version: 2019_10_01_064508) do
   create_table "requests", force: :cascade do |t|
     t.text "description"
     t.string "title"
+    t.integer "delivery"
     t.integer "budget"
     t.bigint "user_id", null: false
-    t.bigint "categories_id", null: false
+    t.bigint "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["categories_id"], name: "index_requests_on_categories_id"
+    t.index ["category_id"], name: "index_requests_on_category_id"
     t.index ["user_id"], name: "index_requests_on_user_id"
   end
 
@@ -134,6 +135,6 @@ ActiveRecord::Schema.define(version: 2019_10_01_064508) do
   add_foreign_key "orders", "users", column: "buyer_id"
   add_foreign_key "orders", "users", column: "seller_id"
   add_foreign_key "pricings", "gigs"
-  add_foreign_key "requests", "categories", column: "categories_id"
+  add_foreign_key "requests", "categories"
   add_foreign_key "requests", "users"
 end

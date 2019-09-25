@@ -1,6 +1,6 @@
 class Request < ApplicationRecord
   belongs_to :user
-  belongs_to :categories
+  belongs_to :category
 
   has_one_attached :attachment_file
 
