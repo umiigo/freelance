@@ -5,6 +5,7 @@ class RequestsController < ApplicationController
   before_action :set_categories, only: [:new, :edit, :list]
 
   def index
+    @requests = current_user.requests
   end
 
   def new
@@ -24,6 +25,11 @@ class RequestsController < ApplicationController
   end
 
   def update
+    if @request.update(request_params) 
+      redirect_to requests_path, notice: "Saved..."
+    else
+      redirect_to request.referrer, flash: {error: @request.errors.full_messages.join(', ')}
+    end
   end
 
   def destroy
@@ -39,7 +45,7 @@ class RequestsController < ApplicationController
 
   end
 
-  def set_requests
+  def set_request
     @request = Request.find(params[:id])
   end
 
@@ -50,4 +56,4 @@ class RequestsController < ApplicationController
   def request_params
     params.require(:request).permit(:description, :category_id, :delivery, :budget, :attachment_file, :title)
   end
-end
+end 
