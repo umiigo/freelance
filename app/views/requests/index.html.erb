@@ -7,7 +7,32 @@
 
         <table class="table is-fullwidth">
             <thead class="is-centered">
+                <tr>
+                    <td>Date</td>
+                    <td>Request</td>
+                    <td class="has-text-right">Offers</td>
+                    <td class="has-text-right">Action</td>
+                </tr>
             </thead>
+            <tbody>
+                <% if @request.blank? %>
+                    <tr>
+                     <td colspan="4" class="has-text-centered">
+                        <h1>Nothing to show here!</h1>
+                     </td>
+                    </tr>
+                <% end %>
+                <% @requests.each do |r| %>
+                    <tr>
+                        <td><%= r.created_at.strftime('%d, %b, %Y')%></td>
+                        <td><%= link_to r.title, request_path(r) %></td>
+                        <td class="has-text-right">3</td>
+                        <td class="has-text-right">
+                            <%= link_to edit_request_path(r), class: 'm-r-5' do %>
+                            <% end %>
+                        </td>
+                    </tr>
+            </tbody>
         </table>
     </div>
 </section>
