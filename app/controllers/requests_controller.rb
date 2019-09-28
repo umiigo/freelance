@@ -33,6 +33,9 @@ class RequestsController < ApplicationController
   end
 
   def destroy
+    @request.destroy
+    redirect_to requests_path, notice: "Removed..."
+
   end
 
   def list
