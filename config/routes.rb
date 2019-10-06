@@ -11,11 +11,13 @@ Rails.application.routes.draw do
 
   post '/users/edit', to: 'users#update'
   post '/offers', to: 'offers#create'
+  post '/reviews', to: 'reviews#create'
 
 
   put '/orders/:id/complete', to: 'orders#complete', as: 'complete_order'
   put '/offers/:id/accept', to: 'offers#accept', as: 'accept_offer'
   put '/offers/:id/reject', to: 'offers#reject', as: 'reject_offer'
+
 
   resources :gigs do
     member do
